@@ -6,7 +6,7 @@ namespace Aplicacao_Transferencia_Bancaria
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Conta minhaConta = new Conta();
         }
     }
 }
