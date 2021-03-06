@@ -1,20 +1,13 @@
 using System;
-namespace Aplicacao_Transferencia_Bancaria.Classes
+namespace Aplicacao_Transferencia_Bancaria
 {
     public class Conta
     {
         private TipoConta TipoConta{get; set;}
-
         private double Saldo {get; set;}
-
         private double Credito {get; set;}
-
         private string Nome {get; set;}
-
-        public Conta(TipoConta tipoConta, 
-                     double saldo, 
-                     double credito, 
-                     string nome)
+        public Conta(TipoConta tipoConta, double saldo, double credito, string nome)
         {
             this.TipoConta = tipoConta;
             this.Saldo = saldo;
@@ -39,16 +32,26 @@ namespace Aplicacao_Transferencia_Bancaria.Classes
 
         public void Depositar(double valorDeposito)
         {
-            this.Saldo += valorSaque;
+            this.Saldo += valorDeposito;
 
             Console.WriteLine("Saldo atual da conta de {0} é {1}", this.Nome, this.Saldo);
         }
 
         public void Transferir(double valorTrasferencia, Conta contaDestino)
         {
-            this.Saldo += valorSaque;
+            if(this.Sacar(valorTrasferencia)){
+                contaDestino.Depositar(valorTrasferencia);
+            }   
+        }
 
-            Console.WriteLine("Saldo atual da conta de {0} é {1}", this.Nome, this.Saldo);
+        public override string ToString()
+        {
+            string retorno = "";
+            retorno += "TipoConta" + ": " + this.TipoConta + "|" ;
+            retorno += "Nome" + ": " + this.Nome + "|";
+            retorno += "Saldo" + ": " + this.Saldo + "|";
+            retorno += "Crédito" + ": " + this.Credito+ " ";
+            return retorno;
         }
     }
 }
